@@ -34,13 +34,13 @@ class Point():
         
         # assign values to x and y
         if xy is None:
-            self.x= r.uniform(-1, 1)
-            self.y= r.uniform(-1, 1)
+            self.x= float(r.uniform(-1, 1))
+            self.y= float(r.uniform(-1, 1))
          
         else:
             
-            self.x= xy[0]
-            self.y= xy[1]  
+            self.x= float(xy[0])
+            self.y= float(xy[1])
        
 
     def __repr__(self):
@@ -48,15 +48,15 @@ class Point():
         Allow the xy-coordinates to be printed when the point is called
         """
         return "Point: %.2f, %.2f" % (self.x, self.y)
-
+    
     def distance(self,point):
         """
         input: a Point() object
         output: Euclidean distance between self point and the input point
         
         """
-        originDistance= m.sqrt(((self.x - point.x)**2) + ((self.y - point.y) ** 2))
-        return originDistance
+        original_distance= m.sqrt(((self.x - point.x) ** 2) + ((self.y - point.y) ** 2))
+        return original_distance
 
 
     

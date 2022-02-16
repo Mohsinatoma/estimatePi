@@ -14,7 +14,7 @@ def estimate_pi(n_points):
     input: number of points to be generated
     output: estimated pi through the simulation
     
-     Author's note:
+     Note:
         The center of the circle does not affect the original distance while estimating the value of
         pi using Monte Carlo Simulation. 
         Let's the center point is (2,3)
@@ -29,21 +29,21 @@ def estimate_pi(n_points):
             distance = ((randomly generated X-coordinate)**2 +((randomly generated Y-coordinate)**2
     """
 
-    insidePoint= 0
-   # print(centeroftheCircle)
-    
+    inside_point= 0
+   
+
     
     for i in range(n_points):
-        # assume the center of the circule (0,0)
-        p1= distanceBetweenPoints.Point((0,0))
+        # assume the center of the circle (0,0)
+        center_of_circle= distanceBetweenPoints.Point((0,0))
         #print(p1.__repr__());
-        p2= distanceBetweenPoints.Point()
+        randomly_generated_point= distanceBetweenPoints.Point()
         #print(p2.__repr__());
-        distance = p2.distance(p1)
-        if distance<= 1.00:
-           insidePoint+= 1     
+        distance = randomly_generated_point.distance(center_of_circle)
+        if distance <= 1.00:
+           inside_point += 1     
 
-    pi = 4* (insidePoint / n_points)
+    pi = 4* (inside_point / n_points)
     return pi
 
 
@@ -53,13 +53,13 @@ def estimateConfidenceInterval(n_iter,totalSamplePoints):
     pi = np.zeros(int(n_iter))
     for i in range(int(n_iter)):
         pi[i] = estimate_pi(int(totalSamplePoints))
-    t= st.norm.interval(alpha=0.95, loc=np.mean(pi), scale=st.sem(pi))
-    print(t)
+    confidence_interval= st.norm.interval(alpha=0.95, loc=np.mean(pi), scale=st.sem(pi))
+    print(confidence_interval)
 
 
 
-noofIter = input("Enter the number of iteration:\n") 
-noofPoints = input("Enter the total sample size:\n") 
+number_of_iter = input("Enter the number of iteration:\n") 
+number_of_points = input("Enter the total sample size:\n") 
 #centeroftheCircle = input("enter Center of the Circle:\n") 
 #centeroftheCircle = tuple(int(x.strip()) for x in centeroftheCircle.split(','))
-estimateConfidenceInterval(noofIter,noofPoints)
+estimateConfidenceInterval(number_of_iter,number_of_points)
